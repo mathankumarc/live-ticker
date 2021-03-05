@@ -1,0 +1,31 @@
+@import "./vaariables.scss";
+
+body {
+    background-color: $base-color;
+}
+
+.book-side {
+  font-size: 11px;
+  cursor: pointer;
+  flex: 1 1;
+  min-width: 270px;
+
+  & .header, .row {
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    text-transform: uppercase;
+
+    & .header-col, .row-col {
+      min-width: 25%;
+      text-align: center;
+    }
+  }
+}
+
+.books-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  min-height: 425px;
+}

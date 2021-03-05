@@ -1,4 +1,5 @@
 import { eventChannel } from 'redux-saga'
+import { BOOK_ACTION_CONSTANTS } from './constants/index'
 
 export default () => {
     // Create WebSocket connection.
@@ -22,7 +23,15 @@ export default () => {
           }
 
           if (msg) {
-              console.log(msg);
+              //console.log(msg);
+              if (msg.event) return;
+              if (!firstDataProcessed) {
+                firstDataProcessed = true;
+                return emitter({ type: BOOK_ACTION_CONSTANTS.ADD_INITIAL_BOOK_ENTRY, payload: msg[1] });
+              }
+              else {
+                return emitter({ type: BOOK_ACTION_CONSTANTS.UPDATE_BOOK_ENTRY, payload: msg[1] });
+              }
               return;
             const { payload: book } = msg
             const channel = msg.channel

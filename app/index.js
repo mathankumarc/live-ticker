@@ -4,7 +4,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import BookReducer from './store/reducer/index'
 import './css/index.scss'
-import Bidsask from './component/Bidsask'
+import Bookasks from './component/Bookasks'
+import Bookbids from './component/Bookbids'
 import store from './store/store'
 
 let isfirstData = true;
@@ -80,7 +81,8 @@ function App({ books }) {
         <Provider store={store}>
             <h1>Mathan</h1>
             <div id="books-container" className="books-container">
-                <Bidsask></Bidsask>
+                <Bookbids></Bookbids>
+                <Bookasks></Bookasks>
                 <div id="book-ask-container" className="book-side">
 
                 </div>

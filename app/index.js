@@ -6,6 +6,7 @@ import BookReducer from './store/reducer/index'
 import './css/index.scss'
 import Bookasks from './component/Bookasks'
 import Bookbids from './component/Bookbids'
+import Bookheader from './component/Bookheader/Bookheader'
 import store from './store/store'
 
 let isfirstData = true;
@@ -76,20 +77,14 @@ socket.addEventListener('message', function (event) {
     console.log(Book);
 });*/
 
-function App({ books }) {
+function App() {
     return (
         <Provider store={store}>
-            <h1>Mathan</h1>
+            <Bookheader></Bookheader>
             <div id="books-container" className="books-container">
                 <Bookbids></Bookbids>
                 <Bookasks></Bookasks>
-                <div id="book-ask-container" className="book-side">
-
-                </div>
             </div>
-            {books && books.map((book) => {
-                return <span>{JSON.stringify(book)}</span>
-            })}
         </Provider>
     );
 }

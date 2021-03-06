@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Bookbar from './Bookbar'
+import { BOOK_TYPES, FLOAT_PRECISION_LENGTH } from './../store/constants'
 
 export default () => {
 
-    const bids = useSelector((state) => state.bids);
-    const bidsPrices = useSelector((state) => state.bidsPrices);
+    const bids = useSelector((state) => state.books.bids);
+    const bidsPrices = useSelector((state) => state.books.bidsPrices);
     let cumulativeTotal = 0;
     let initialY =0;
 
@@ -18,14 +19,14 @@ export default () => {
                 <div className="header-col">Price</div>
             </div>
 
-            <Bookbar bookData={bids} bookPrices={bidsPrices}></Bookbar>
+            <Bookbar bookData={bids} bookPrices={bidsPrices} type={BOOK_TYPES.BOOK_BIDS}></Bookbar>
 
             {bidsPrices.length && bidsPrices.map((price, index) => {
                 cumulativeTotal += bids[price].amount;
                 return (<div key={index} className="row">
                     <div className="row-col">{bids[price].cnt}</div>
-                    <div className="row-col text-align-right">{bids[price].amount.toFixed(4)}</div>
-                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(4)}</div>
+                    <div className="row-col text-align-right">{bids[price].amount.toFixed(FLOAT_PRECISION_LENGTH)}</div>
+                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(FLOAT_PRECISION_LENGTH)}</div>
                     <div className="row-col">{bids[price].price}</div>
                 </div>);
             })}

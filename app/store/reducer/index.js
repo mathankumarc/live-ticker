@@ -3,6 +3,8 @@ import { BOOK_ACTION_CONSTANTS } from './../constants/index'
 const initialBook = {
     bids: [],
     asks: [],
+    bidsPrices: [],
+    asksPrices: []
 };
 export default (state = initialBook, action) => {
     switch (action.type) {
@@ -17,10 +19,13 @@ export default (state = initialBook, action) => {
                 pp.amount = Math.abs(pp.amount)
                 initialBook[side][pp.price] = pp
             });
-            
+            let bidsPrices = Object.keys(initialBook['bids']).sort((a, b) => b - a);
+            let asksPrices = Object.keys(initialBook['asks']).sort((a, b) => a - b);
+            initialBook.bidsPrices = bidsPrices;
+            initialBook.asksPrices = asksPrices
             return initialBook;
             break;
-        case BOOK_ACTION_CONSTANTS.UPDATE_BOOK_ENTRY:
+        case BOOK_ACTION_CONSTANTS.UPDATE_BOOK_ENTRY: {
             // Create a new Object and ensure that bids and asks has new array.
             let book = {
                 bids: [].concat(state.bids),
@@ -51,9 +56,13 @@ export default (state = initialBook, action) => {
                 book[side][pp.price] = pp
 
             }
-
+            let bidsPrices = Object.keys(book['bids']).sort((a, b) => b - a);
+            let asksPrices = Object.keys(book['asks']).sort((a, b) => a - b);
+            book.bidsPrices = bidsPrices;
+            book.asksPrices = asksPrices
             return book;
             break;
+        }
         default:
             return state;
             break;

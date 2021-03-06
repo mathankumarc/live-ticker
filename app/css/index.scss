@@ -4,6 +4,10 @@ body {
     background-color: $base-color;
 }
 
+.text-align-right {
+  text-align: right;
+}
+
 .book-side {
   font-size: 11px;
   cursor: pointer;
@@ -17,8 +21,12 @@ body {
     text-transform: uppercase;
 
     & .header-col, .row-col {
-      min-width: 25%;
+      min-width: 20%;
       text-align: center;
+    }
+
+    & .text-align-right {
+      text-align: right;
     }
   }
 }
@@ -28,4 +36,18 @@ body {
   justify-content: space-between;
   text-align: right;
   min-height: 425px;
+}
+
+.book-bar-container {
+  width: 100%;
+  height: 0;
+  overflow: visible;
+
+  & svg {
+    width: 100%;
+    height: 408px;
+    transform: scale(-1, 1);
+    z-index: 0;
+    pointer-events: none;
+  }
 }

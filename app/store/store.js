@@ -5,7 +5,8 @@ import reducer from './reducer'
 import mySaga from './sagas'
 
 // create the saga middleware
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
+
 // mount it on the Store
 const store = createStore(
   reducer,

@@ -1,18 +1,48 @@
-import { BOOK_ACTION_CONSTANTS } from './../constants/index'
+import { BOOK_ACTION_CONSTANTS, LOCAL_STORAGE_KEY } from './../constants/index'
 
-const initialBook = {
-    bids: [],
-    asks: [],
+const emptyBook = {
+    bids: {},
+    asks: {},
     bidsPrices: [],
     asksPrices: []
 };
+
+const getDefaultValues = () => {
+
+    const previousData = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (previousData !== null) {
+        try {
+            return JSON.parse(previousData);
+        }
+        catch(err) {
+            return emptyBook;
+        }
+    }
+    else {
+        return emptyBook;
+    }
+
+}
+
+
+const setDefaultValues = (data) => {
+    try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+    }
+    catch(err) {
+        console.log(`Error in Saving data to localstorage: ${err}`)
+    }
+}
+
+let initialBook = getDefaultValues();
 
 export default (state = initialBook, action) => {
     switch (action.type) {
         case BOOK_ACTION_CONSTANTS.ADD_INITIAL_BOOK_ENTRY:
             let initialBook = {
-                bids: [],
-                asks: []
+                bids: {},
+                asks: {}
             }
             action.payload.map((entry) => {
                 let pp = { price: entry[0], cnt: entry[1], amount: entry[2] }
@@ -24,13 +54,14 @@ export default (state = initialBook, action) => {
             let asksPrices = Object.keys(initialBook['asks']).sort((a, b) => a - b);
             initialBook.bidsPrices = bidsPrices//.slice(0, 24);
             initialBook.asksPrices = asksPrices//.slice(0, 24);
+            setDefaultValues(initialBook);
             return initialBook;
             break;
         case BOOK_ACTION_CONSTANTS.UPDATE_BOOK_ENTRY: {
             // Create a new Object and ensure that bids and asks has new array.
             let book = {
-                bids: [].concat(state.bids),
-                asks: [].concat(state.asks)
+                bids: {...state.bids},
+                asks: {...state.asks}
             };
 
             let pp = { price: action.payload[0], cnt: action.payload[1], amount: action.payload[2] }
@@ -61,6 +92,7 @@ export default (state = initialBook, action) => {
             let asksPrices = Object.keys(book['asks']).sort((a, b) => a - b);
             book.bidsPrices = bidsPrices//.slice(0, 24);
             book.asksPrices = asksPrices//.slice(0, 24);
+            setDefaultValues(book);
             return book;
             break;
         }

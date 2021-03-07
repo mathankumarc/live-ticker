@@ -1,0 +1,108 @@
+@import "/app/css/vaariables.scss";
+
+.settings-modal-container {
+    position: fixed;
+    top: 10%;
+    z-index: 12;
+    width: 600px;
+    max-height: 80vh;
+    overflow: visible;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,.2);
+    background-color: $modal-bg-color;
+    font-size: $modal-content-font-size;
+
+    & .settings-modal-title {
+        font-size: 1.64rem;
+        border-bottom: 1px solid #3c4346;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 25px 10px;
+
+        & h5 {
+            margin: 0;
+            font-weight: 300;
+        }
+    }
+    
+    & .settings-modal-content {
+        overflow: auto;
+        white-space: pre-line;
+        font-size: 15px;
+        padding: 0 25px 8px;
+
+        & .option-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 3px;
+
+            & .option-text {
+                margin-left: 5px;;
+            }
+
+            & .option-text.bids {
+                color:$bids-color
+            }
+
+            & .option-text.asks {
+                color:$asks-color
+            }
+        }
+
+        & .radio-circle {
+            width: 12px;
+            height: 12px;
+            box-sizing: initial;
+            background: transparent;
+            border: 2px solid #cecece;
+            border-radius: 50%;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        & .radio-circle.selected {
+            background-color: #82baf6;
+        }
+
+        & .section-title {
+            margin-bottom: 7px;
+        }
+    }
+}
+
+.settings-modal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .settings-modal-overlay {
+        position: fixed;
+        z-index: 11;
+        background: #000;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transition: opacity .4s;
+        opacity: .5;
+        pointer-events: auto;
+    }
+}
+
+.settings-modal-header {
+    height: 23px;
+    line-height: 23px;
+    padding: 0 8px;
+    background-color: #293943;
+
+    & i {
+        float: right;
+        color: #82baf6;
+    }
+
+    & i::before {
+        content: "\00d7";
+    }
+}

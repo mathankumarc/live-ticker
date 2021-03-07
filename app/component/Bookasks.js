@@ -23,7 +23,7 @@ export default () => {
 
             <Bookbar bookData={asks} bookPrices={asksPrices} type={BOOK_TYPES.BOOK_ASKS}></Bookbar>
 
-            {asksPrices.length && asksPrices.map((price, index) => {
+            {asksPrices.length && asksPrices.slice(0, 24).map((price, index) => {
                 cumulativeTotal += asks[price].amount;
                 return (<div key={index} className="row">
                     <div className="row-col">{asks[price].price}</div>

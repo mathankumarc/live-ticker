@@ -4,18 +4,16 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import BookReducer from './store/reducer/index'
 import './css/index.scss'
-import Bookasks from './component/Bookasks'
-import Bookbids from './component/Bookbids'
-import Bookheader from './component/Bookheader/Bookheader'
+import Book from './component/Book'
 import store from './store/store'
 
-let isfirstData = true;
+/*let isfirstData = true;
 let Book = {};
 Book.asks = {};
 Book.bids = {};
 
 // Create WebSocket connection.
-/*const socket = new WebSocket('wss://api-pub.bitfinex.com/ws/2');
+const socket = new WebSocket('wss://api-pub.bitfinex.com/ws/2');
 
 // Connection opened
 socket.addEventListener('open', function (event) {
@@ -80,11 +78,7 @@ socket.addEventListener('message', function (event) {
 function App() {
     return (
         <Provider store={store}>
-            <Bookheader></Bookheader>
-            <div id="books-container" className="books-container">
-                <Bookbids></Bookbids>
-                <Bookasks></Bookasks>
-            </div>
+          <Book></Book>
         </Provider>
     );
 }

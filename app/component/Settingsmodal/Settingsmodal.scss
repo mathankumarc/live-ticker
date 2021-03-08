@@ -97,12 +97,10 @@
     padding: 0 8px;
     background-color: #293943;
 
-    & i {
+    & .close-icon {
         float: right;
         color: #82baf6;
+        cursor: pointer;
     }
 
-    & i::before {
-        content: "\00d7";
-    }
 }

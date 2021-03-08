@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Bookbar from './Bookbar'
-import { BOOK_TYPES, FLOAT_PRECISION_LENGTH } from './../store/constants'
+import { BOOK_TYPES, FLOAT_PRECISION_LENGTH, COLUMN_ORDER_VALUES } from './../store/constants'
 
 export default () => {
 
     const asks = useSelector((state) => state.books.asks);
     const asksPrices = useSelector((state) => state.books.asksPrices);
+    const columnOrderOption = useSelector((state) => state.bookColumnOrderSetting);
     let cumulativeTotal = 0;
     //console.log(asksPrices.length);
 

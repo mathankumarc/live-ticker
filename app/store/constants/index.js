@@ -21,3 +21,62 @@ export const BOOK_VISUAL_SETTING_CONSTANTS = {
     SHOW_CUMULATIVE: 'SHOW_CUMULATIVE',
     SHOW_AMOUNT: 'SHOW_AMOUNT'
 }
+
+export const SOCKET_CONNECTION_CONSTANTS = {
+    ON_ERROR: 'ON_SOCKET_ERROR'
+}
+
+export const PRECISION_SETTING_VALUES = [
+    'P0',
+    'P1',
+    'P2',
+    'P3',
+    'P4'
+];
+
+export const COLUMN_ORDER_SETTING_ACTION = 'SET_BOOK_COLUMN_ORDER_OPTION';
+
+export const COLUMN_ORDER_VALUES = [
+    {
+        'bids': [
+            'cnt',
+            'price',
+            'amount',
+            'total'
+        ],
+        'asks': [
+            'total',
+            'amount',
+            'price',
+            'cnt'
+        ]
+    },
+    {
+        'bids': [
+            'cnt',
+            'amount',
+            'total',
+            'price',
+        ],
+        'asks': [
+            'price',
+            'total',
+            'amount',
+            'cnt'
+        ]
+    },
+    {
+        'bids': [
+            'cnt',
+            'total',
+            'price',
+            'amount'
+        ],
+        'asks': [
+            'amount',
+            'price',
+            'total',
+            'cnt'
+        ]
+    }
+];

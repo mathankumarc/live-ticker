@@ -1,9 +1,19 @@
 import { eventChannel } from 'redux-saga'
-import { BOOK_ACTION_CONSTANTS } from './constants/index'
+import { BOOK_ACTION_CONSTANTS, SOCKET_CONNECTION_CONSTANTS } from './constants/index'
 
 export default () => {
     // Create WebSocket connection.
     return eventChannel(emitter => {
+
+      // To Re-try the scoket after it closes or reults in error.
+      const retrySocket = () => {
+       setTimeout(() => {
+        makeSocketConnection();
+       }, 10000);
+      }
+
+      // Initiate the Scoket connection.
+      const makeSocketConnection = () => {
         const ws = new WebSocket('wss://api-pub.bitfinex.com/ws/2')
         let firstDataProcessed = false;
 
@@ -13,8 +23,15 @@ export default () => {
         }
 
         ws.onerror = (error) => {
-          console.log('WebSocket error ' + error)
-          console.dir(error)
+          console.log('WebSocket error ' + error);
+          ws.close();
+          retrySocket();
+          //return emitter({ type: SOCKET_CONNECTION_CONSTANTS.ON_ERROR, payload: msg[1] });
+        }
+
+        ws.onclose = () => {
+          console.log('Socket off');
+          retrySocket();
         }
 
         ws.onmessage = (e) => {
@@ -43,9 +60,15 @@ export default () => {
 
           }
         }
+      }
+
+      // Create the Scoket.
+      makeSocketConnection();
+      
         // unsubscribe function
         return () => {
-          console.log('Socket off')
+          console.log('Socket off');
+          ws.close();
         }
       })
 }

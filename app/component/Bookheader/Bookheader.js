@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getShowModal } from './../../store/actions/toggleModal'
+import Precisionsetting from './Precisionsetting';
 
 import './Bookheader.scss'
 
@@ -17,11 +18,12 @@ export default () => {
         <div className="header-container">
             <div>
                 <span>Order Book</span>
-                <span className="opacity-half">BTC/USD</span>
+                <span className="currency-title">BTC/USD</span>
             </div>
 
             <div>
-                <span onClick={showModal}>settings</span>
+                <Precisionsetting></Precisionsetting>
+                <span className="fa fa-cog settings-icon" title="Settings" onClick={showModal}></span>
             </div>
         </div>
     );

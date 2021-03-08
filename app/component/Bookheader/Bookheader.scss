@@ -1,8 +1,23 @@
-.opacity-half {
-    opacity: 0.5;
-}
+
 
 .header-container {
     text-transform: uppercase;
     font-size: .9rem;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+    display: flex;
+    justify-content: space-between;
+
+    & .currency-title {
+        opacity: 0.5;
+        margin-left: 5px;
+    }
+
+    & .settings-icon {
+        cursor: pointer;
+    }
+
+    & .precision-icon {
+        margin: 0 5px;
+        cursor: pointer;
+    }
 }

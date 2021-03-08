@@ -9,19 +9,22 @@ const emptyBook = {
 
 const getDefaultValues = () => {
 
-    const previousData = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (previousData !== null) {
         try {
-            return JSON.parse(previousData);
+
+            const previousData = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+            if (previousData !== null) {
+             return JSON.parse(previousData);
+            }
+            else {
+                return emptyBook;
+            }
+
         }
+
         catch(err) {
             return emptyBook;
         }
-    }
-    else {
-        return emptyBook;
-    }
 
 }
 

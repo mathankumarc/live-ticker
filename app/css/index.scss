@@ -8,16 +8,18 @@ body {
   color: $font-color;
 }
 
+#app-root {
+  max-width: 840px;
+}
+
 .text-align-right {
   text-align: right;
 }
 
 .book-side {
   font-size: 11px;
-  cursor: pointer;
   flex: 1 1;
   min-width: 270px;
-  max-width: 30%;
 
   & .header, .row {
     flex-direction: row;
@@ -64,4 +66,9 @@ body {
     transform: scale(1, 1);
     fill: $asks-color;
   }
+}
+
+.fa-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

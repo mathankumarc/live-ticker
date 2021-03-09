@@ -1,9 +1,12 @@
 import { eventChannel } from 'redux-saga'
 import { BOOK_ACTION_CONSTANTS, SOCKET_CONNECTION_CONSTANTS } from './constants/index'
 
-export default () => {
+export default (precison = 'P0', isPrecisionChanged = false) => {
+  console.log(precison);
     // Create WebSocket connection.
     return eventChannel(emitter => {
+
+      let ws;
 
       // To Re-try the scoket after it closes or reults in error.
       const retrySocket = () => {
@@ -14,12 +17,12 @@ export default () => {
 
       // Initiate the Scoket connection.
       const makeSocketConnection = () => {
-        const ws = new WebSocket('wss://api-pub.bitfinex.com/ws/2')
+        ws = new WebSocket('wss://api-pub.bitfinex.com/ws/2')
         let firstDataProcessed = false;
 
         ws.onopen = () => {
           console.log('opening...')
-          ws.send(JSON.stringify({"event":"subscribe","channel":"book","symbol":"tBTCUSD"}));
+          ws.send(JSON.stringify({"event":"subscribe","channel":"book","symbol":"tBTCUSD", "prec": precison}));
         }
 
         ws.onerror = (error) => {
@@ -29,9 +32,11 @@ export default () => {
           //return emitter({ type: SOCKET_CONNECTION_CONSTANTS.ON_ERROR, payload: msg[1] });
         }
 
-        ws.onclose = () => {
+        ws.onclose = (event) => {
           console.log('Socket off');
-          retrySocket();
+          if (event.code !== 4000) {
+            retrySocket();
+          }
         }
 
         ws.onmessage = (e) => {
@@ -66,9 +71,9 @@ export default () => {
       makeSocketConnection();
       
         // unsubscribe function
-        return () => {
+        return (code = 4000) => {
           console.log('Socket off');
-          ws.close();
+          ws.close(code);
         }
       })
 }

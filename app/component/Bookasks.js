@@ -8,6 +8,7 @@ export default () => {
     const asks = useSelector((state) => state.books.asks);
     const asksPrices = useSelector((state) => state.books.asksPrices);
     const columnOrderOption = useSelector((state) => state.bookColumnOrderSetting);
+    const currentPrecisionSetting = useSelector((state) => state.precisionSetting);
     let cumulativeTotal = 0;
     //console.log(asksPrices.length);
 
@@ -28,8 +29,8 @@ export default () => {
                 cumulativeTotal += asks[price].amount;
                 return (<div key={index} className="row">
                     <div className="row-col">{asks[price].price}</div>
-                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(FLOAT_PRECISION_LENGTH)}</div>
-                    <div className="row-col text-align-right">{asks[price].amount.toFixed(FLOAT_PRECISION_LENGTH)}</div>
+                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>
+                    <div className="row-col text-align-right">{asks[price].amount.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>
                     <div className="row-col">{asks[price].cnt}</div>
                 </div>);
             })}

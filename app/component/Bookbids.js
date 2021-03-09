@@ -7,6 +7,7 @@ export default () => {
 
     const bids = useSelector((state) => state.books.bids);
     const bidsPrices = useSelector((state) => state.books.bidsPrices);
+    const currentPrecisionSetting = useSelector((state) => state.precisionSetting);
     let cumulativeTotal = 0;
     let initialY =0;
 
@@ -25,8 +26,8 @@ export default () => {
                 cumulativeTotal += bids[price].amount;
                 return (<div key={index} className="row">
                     <div className="row-col">{bids[price].cnt}</div>
-                    <div className="row-col text-align-right">{bids[price].amount.toFixed(FLOAT_PRECISION_LENGTH)}</div>
-                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(FLOAT_PRECISION_LENGTH)}</div>
+                    <div className="row-col text-align-right">{bids[price].amount.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>
+                    <div className="row-col text-align-right">{cumulativeTotal.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>
                     <div className="row-col">{bids[price].price}</div>
                 </div>);
             })}

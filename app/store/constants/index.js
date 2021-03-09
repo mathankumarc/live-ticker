@@ -10,7 +10,13 @@ export const BOOK_TYPES = {
     BOOK_ASKS: 'BOOK_ASKS',
 };
 
-export const FLOAT_PRECISION_LENGTH = 4;
+export const FLOAT_PRECISION_LENGTH = {
+    'P0' : 4,
+    'P1' : 3,
+    'P2' : 2,
+    'P3' : 1,
+    'P4' : 0
+};
 
 export const SETTINGS_MODAL_CONSTANTS = {
     SHOW_MODAL: 'SHOW_MODAL',

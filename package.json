@@ -4,8 +4,8 @@
   "description": "Live Ticker Sample",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development --watch",
-    "prod-build": "webpack --mode production",
+    "dev-build": "webpack --mode development --watch",
+    "build": "webpack --mode production",
     "start": "node index.js"
   },
   "author": "Mathankumar Chermakani <mathankumar.c@gmail.com>",

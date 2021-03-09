@@ -38,6 +38,15 @@ const setDefaultValues = (data) => {
     }
 }
 
+const removeDefaultValues = () => {
+    try {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+    }
+    catch(err) {
+        console.log(`Error in Saving data to localstorage: ${err}`)
+    }
+}
+
 let initialBook = getDefaultValues();
 
 export default (state = initialBook, action) => {
@@ -99,6 +108,13 @@ export default (state = initialBook, action) => {
             return book;
             break;
         }
+        case BOOK_ACTION_CONSTANTS.CLEAR_BOOK_DEFAULT_ENTRIES:
+            removeDefaultValues();
+            return state;
+            break;
+        case BOOK_ACTION_CONSTANTS.CLEAR_BOOK_ENTRIES:
+            return emptyBook;
+            break;
         default:
             return state;
             break;

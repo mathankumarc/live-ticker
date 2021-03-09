@@ -1,6 +1,8 @@
 import "regenerator-runtime/runtime";
 import initWebsocket from './socketConnection'
 import { call, put, take, select } from 'redux-saga/effects'
+import { getSocketClosedForPrecisonChange } from './actions/socketActions'
+import { BOOK_ACTION_CONSTANTS } from './../store/constants/index'
 
 const precisionSelector = (state) => {
     return state.precisionSetting;
@@ -19,6 +21,8 @@ export default function* wsSagas() {
 
             currentPrecisionSetting = newPrecisionSetting;
             channel.close();
+            yield put(getSocketClosedForPrecisonChange());
+            yield put({type: BOOK_ACTION_CONSTANTS.CLEAR_BOOK_ENTRIES});
             channel = yield call(initWebsocket, currentPrecisionSetting);
 
         }

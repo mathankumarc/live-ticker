@@ -1,6 +1,6 @@
 # live-ticker
 
-This is a Implementation of Bitfinex Order Book which can be found in below URL
+This is an Implementation of Bitfinex Order Book which can be found in below URL
 
 https://trading.bitfinex.com/t?demo=true
 

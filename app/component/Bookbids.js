@@ -21,7 +21,7 @@ export default () => {
 
       <Bookbar bookData={bids} bookPrices={bidsPrices} type={BOOK_TYPES.BOOK_BIDS} />
       {isLoading && <Bookloader />}
-      {!isLoading && bidsPrices.length && bidsPrices.slice(0, 24).map((price, index) => {
+      {!isLoading && bidsPrices.length && bidsPrices.slice(0, 24).map((price) => {
         cumulativeTotal += bids[price].amount;
         return (<Bookrow key={price} type="bids" data={bids[price]} total={cumulativeTotal} />);
       })}

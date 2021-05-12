@@ -8,12 +8,13 @@ import './Bookheader.scss';
 export default () => {
   const modalState = useSelector((state) => state.toggleModal);
   const dispatch = useDispatch();
-  console.log(modalState);
+
   const showModal = () => {
     if (!modalState) {
       dispatch(getShowModal());
     }
   };
+
   return (
     <div className="header-container">
       <div>

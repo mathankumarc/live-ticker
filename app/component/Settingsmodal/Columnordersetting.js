@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSetColumnOrderSetting } from '../../store/actions/bookColumnOrderSetting';
+import getSetColumnOrderSetting from '../../store/actions/bookColumnOrderSetting';
 
 class Columnordersetting extends React.Component {
   setColumnOrder(val) {

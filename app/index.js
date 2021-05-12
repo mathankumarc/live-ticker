@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import BookReducer from './store/reducer/index';
 import './css/index.scss';
 import Book from './component/Book';
 import store from './store/store';

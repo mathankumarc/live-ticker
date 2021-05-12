@@ -1,9 +1,9 @@
 const processFirstBatch = (data) => {
 
-}
+};
 
-let isfistDataProcessed = false;
+const isfistDataProcessed = false;
 
 export const processBookData = (data) => {
 
-}
+};

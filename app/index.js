@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import BookReducer from './store/reducer/index'
-import './css/index.scss'
-import Book from './component/Book'
-import store from './store/store'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import BookReducer from './store/reducer/index';
+import './css/index.scss';
+import Book from './component/Book';
+import store from './store/store';
 
-/*let isfirstData = true;
+/* let isfirstData = true;
 let Book = {};
 Book.asks = {};
 Book.bids = {};
@@ -47,7 +47,7 @@ socket.addEventListener('message', function (event) {
 
             if (!pp.cnt) {
               let found = true
-      
+
               if (pp.amount > 0) {
                 if (Book['bids'][pp.price]) {
                   delete Book['bids'][pp.price]
@@ -61,7 +61,7 @@ socket.addEventListener('message', function (event) {
                   found = false
                 }
               }
-      
+
               if (!found) {
                // fs.appendFileSync(logfile, '[' + moment().format() + '] ' + pair + ' | ' + JSON.stringify(pp) + ' BOOK delete fail side not found\n')
               }
@@ -73,15 +73,14 @@ socket.addEventListener('message', function (event) {
         }
     }
     console.log(Book);
-});*/
+}); */
 
 function App() {
-    return (
-        <Provider store={store}>
-          <Book></Book>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <Book />
+    </Provider>
+  );
 }
 
-ReactDOM.render(<App/>, document.getElementById('app-root'));
-
+ReactDOM.render(<App />, document.getElementById('app-root'));

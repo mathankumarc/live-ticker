@@ -1,5 +1,5 @@
 import { eventChannel } from 'redux-saga';
-import { BOOK_ACTION_CONSTANTS, SOCKET_CONNECTION_CONSTANTS } from './constants/index';
+import { BOOK_ACTION_CONSTANTS } from './constants/index';
 
 export default (precison = 'P0', isPrecisionChanged = false) => {
   console.log(precison);
@@ -52,9 +52,12 @@ export default (precison = 'P0', isPrecisionChanged = false) => {
         if (msg) {
           // console.log(msg);
           if (msg.event) return;
-          if (msg[1] === 'cs' || msg[1] === 'hs') {
+
+          if (msg[1] === 'cs' || msg[1] === 'hs' || msg[1] === 'hb') {
             console.log('In CS/HS');
+            return;
           }
+
           if (!firstDataProcessed) {
             firstDataProcessed = true;
             return emitter({ type: BOOK_ACTION_CONSTANTS.ADD_INITIAL_BOOK_ENTRY, payload: msg[1] });

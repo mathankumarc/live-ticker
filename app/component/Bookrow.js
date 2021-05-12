@@ -1,25 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { BOOK_TYPES, FLOAT_PRECISION_LENGTH, COLUMN_ORDER_VALUES } from '../store/constants';
+import { FLOAT_PRECISION_LENGTH, COLUMN_ORDER_VALUES } from '../store/constants';
 
-export default ({ type, data, total }) => {
+const Bookrow = ({ type, data, total }) => {
   const currentPrecisionSetting = useSelector((state) => state.precisionSetting);
   const columnOrderOption = useSelector((state) => state.bookColumnOrderSetting);
 
   return (
     <div className="row">
-      {COLUMN_ORDER_VALUES[columnOrderOption][type] && COLUMN_ORDER_VALUES[columnOrderOption][type].map((column, index) => {
+      {COLUMN_ORDER_VALUES[columnOrderOption][type]
+      && COLUMN_ORDER_VALUES[columnOrderOption][type].map((column) => {
         switch (column) {
           case 'cnt':
-            return <div key={index} className="row-col">{data.cnt}</div>;
+            return <div key={column} className="row-col">{data.cnt}</div>;
           case 'price':
-            return <div key={index} className="row-col">{data.price}</div>;
+            return <div key={column} className="row-col">{data.price}</div>;
           case 'total':
-            return <div key={index} className="row-col text-align-right">{total.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>;
+            return <div key={column} className="row-col text-align-right">{total.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>;
           case 'amount':
-            return <div key={index} className="row-col text-align-right">{data.amount.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>;
+            return <div key={column} className="row-col text-align-right">{data.amount.toFixed(FLOAT_PRECISION_LENGTH[currentPrecisionSetting])}</div>;
+          default:
+            return <div />;
         }
       })}
     </div>
   );
 };
+
+Bookrow.propTypes = {
+  type: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    price: PropTypes.number,
+    cnt: PropTypes.number,
+    amount: PropTypes.number,
+  }).isRequired,
+  total: PropTypes.number.isRequired,
+};
+
+export default Bookrow;

@@ -41,7 +41,7 @@ const initialBook = getDefaultValues();
 
 export default (state = initialBook, action) => {
   switch (action.type) {
-    case BOOK_ACTION_CONSTANTS.ADD_INITIAL_BOOK_ENTRY:
+    case BOOK_ACTION_CONSTANTS.ADD_INITIAL_BOOK_ENTRY: {
       const initialBook = {
         bids: {},
         asks: {},
@@ -58,7 +58,7 @@ export default (state = initialBook, action) => {
       initialBook.asksPrices = asksPrices;// .slice(0, 24);
       setDefaultValues(initialBook);
       return initialBook;
-      break;
+    }
     case BOOK_ACTION_CONSTANTS.UPDATE_BOOK_ENTRY: {
       // Create a new Object and ensure that bids and asks has new array.
       const book = {
@@ -67,7 +67,7 @@ export default (state = initialBook, action) => {
       };
 
       const pp = { price: action.payload[0], cnt: action.payload[1], amount: action.payload[2] };
-      if (isNaN(parseInt(action.payload[0]))) {
+      if (parseInt(action.payload[0], 10).isNaN) {
         return state;
       }
       if (!pp.cnt) {
@@ -91,17 +91,13 @@ export default (state = initialBook, action) => {
       book.asksPrices = asksPrices;// .slice(0, 24);
       setDefaultValues(book);
       return book;
-      break;
     }
     case BOOK_ACTION_CONSTANTS.CLEAR_BOOK_DEFAULT_ENTRIES:
       removeDefaultValues();
       return state;
-      break;
     case BOOK_ACTION_CONSTANTS.CLEAR_BOOK_ENTRIES:
       return emptyBook;
-      break;
     default:
       return state;
-      break;
   }
 };

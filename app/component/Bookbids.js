@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Bookbar from './Bookbar';
 import { BOOK_TYPES, SOCKET_CONNECTION_CONSTANTS } from '../store/constants';
 import Bookrow from './Bookrow';
@@ -9,9 +9,10 @@ import Bookloader from './Bookloader';
 export default () => {
   const bids = useSelector((state) => state.books.bids);
   const bidsPrices = useSelector((state) => state.books.bidsPrices);
-  const currentPrecisionSetting = useSelector((state) => state.precisionSetting);
   const socketStatus = useSelector((state) => state.books.socketStatus);
-  const isLoading = (socketStatus === SOCKET_CONNECTION_CONSTANTS.CLOSED_FOR_PRECISION_CHANGE || !bidsPrices.length);
+  const isLoading = (socketStatus === SOCKET_CONNECTION_CONSTANTS.CLOSED_FOR_PRECISION_CHANGE
+    || !bidsPrices.length);
+
   let cumulativeTotal = 0;
 
   return (
@@ -22,7 +23,7 @@ export default () => {
       {isLoading && <Bookloader />}
       {!isLoading && bidsPrices.length && bidsPrices.slice(0, 24).map((price, index) => {
         cumulativeTotal += bids[price].amount;
-        return (<Bookrow key={index} type="bids" data={bids[price]} total={cumulativeTotal} />);
+        return (<Bookrow key={price} type="bids" data={bids[price]} total={cumulativeTotal} />);
       })}
     </div>
   );

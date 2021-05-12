@@ -16,6 +16,7 @@ export default ({bookData, bookPrices, type}) => {
                 incrementalTotal += bookData[price].amount;
                 // For the Amount graph.
                 const scale = (BOOK_VISUAL_SETTING_CONSTANTS.SHOW_AMOUNT === currentBookVisualSetting) ? `scale(${bookData[price].amount/cumulativeTotal} 1)` : `scale(${incrementalTotal/cumulativeTotal} 1)`;
+
                 // Trying for accumlated graph.
                 //const scale = `scale(${bookData[price].amount/incrementalTotal} 1)`
                 //const scale = `scale(${incrementalTotal/cumulativeTotal} 1)`

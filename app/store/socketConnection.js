@@ -69,7 +69,7 @@ export default (precison = 'P0', isPrecisionChanged = false) => {
 
       // Create the Scoket.
       makeSocketConnection();
-      
+
         // unsubscribe function
         return (code = 4000) => {
           console.log('Socket off');

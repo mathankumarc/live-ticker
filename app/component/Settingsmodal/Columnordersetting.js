@@ -23,21 +23,21 @@ class Columnordersetting extends React.Component {
                                 <span className="option-text bids">Count Price Amount Total</span>
                                 <span className="option-text asks">Total Amount Price Count</span>
                             </div>
-                    </div>
-                    <div className="option-row">
-                            <div onClick={this.setColumnOrder.bind(this, 1)} className={"radio-circle " + (this.props.currentColumnOrderOption === 1 ? 'selected' : '')}></div>
-                            <div>
-                                <span className="option-text bids">Count Amount Total Price</span>
-                                <span className="option-text asks">Price Total Amount Count</span>
-                            </div>
-                    </div>
-                    <div className="option-row">
-                            <div onClick={this.setColumnOrder.bind(this, 2)} className={"radio-circle " + (this.props.currentColumnOrderOption === 2 ? 'selected' : '')}></div>
-                            <div>
-                                <span className="option-text bids">Count Total Price Amount</span>
-                                <span className="option-text asks">Amount Price Total Count</span>
-                            </div>
-                    </div>
+                        </div>
+                        <div className="option-row">
+                                <div onClick={this.setColumnOrder.bind(this, 1)} className={"radio-circle " + (this.props.currentColumnOrderOption === 1 ? 'selected' : '')}></div>
+                                <div>
+                                    <span className="option-text bids">Count Amount Total Price</span>
+                                    <span className="option-text asks">Price Total Amount Count</span>
+                                </div>
+                        </div>
+                        <div className="option-row">
+                                <div onClick={this.setColumnOrder.bind(this, 2)} className={"radio-circle " + (this.props.currentColumnOrderOption === 2 ? 'selected' : '')}></div>
+                                <div>
+                                    <span className="option-text bids">Count Total Price Amount</span>
+                                    <span className="option-text asks">Amount Price Total Count</span>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>

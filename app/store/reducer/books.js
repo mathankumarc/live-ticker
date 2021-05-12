@@ -77,6 +77,9 @@ export default (state = initialBook, action) => {
             };
 
             let pp = { price: action.payload[0], cnt: action.payload[1], amount: action.payload[2] }
+            if (isNaN(parseInt(action.payload[0]))) {
+                return state;
+            }
             if (!pp.cnt) {
 
                 if (pp.amount > 0) {
